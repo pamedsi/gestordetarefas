@@ -11,10 +11,17 @@ import org.springframework.web.bind.annotation.*;
 public class PessoaRestController implements PessoaAPI {
     private final PessoaService pessoaService;
     @Override
-    public NovaPessoaResponse postNovaPessoa(NovaPessoaRequest colaboradorDTO) {
+    public NovaPessoaResponse postNovaPessoa(PessoaRequest pessoaRequest) {
         log.info("[inicia]  PessoaRestController - postNovaPessoa");
-        NovaPessoaResponse novaPessoaResponse = pessoaService.adicionaNovaPessoa(colaboradorDTO);
+        NovaPessoaResponse novaPessoaResponse = pessoaService.adicionaNovaPessoa(pessoaRequest);
         log.info("[finaliza]  PessoaRestController - postNovaPessoa\n");
         return novaPessoaResponse;
+    }
+
+    @Override
+    public void putPessoa(PessoaRequest pessoaRequest, String id) {
+        log.info("[inicia]  PessoaRestController - putPessoa");
+        pessoaService.alteraPessoa(pessoaRequest, id);
+        log.info("[finaliza]  PessoaRestController - putPessoa\n");
     }
 }
