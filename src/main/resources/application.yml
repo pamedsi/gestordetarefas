@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: 'Gestor de Tarefas'
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USUARIO}
+    password: ${DATABASE_SENHA}
+  jpa:
+    hibernate:
+      ddl-auto: update
