@@ -13,10 +13,9 @@ public class PessoaApplicationService implements PessoaService {
     private final PessoaRepository pessoaRepository;
 
     @Override
-    public NovaPessoaResponse adicionarNovaPessoa(NovaPessoaRequest novaPessoaRequest) {
+    public NovaPessoaResponse adicionarNovaPessoa(NovaPessoaRequest novaPessoaDTO) {
         log.info("[inicia]  PessoaApplicationService - adicionarNovaPessoa");
-
         log.info("[finaliza]  PessoaApplicationService - adicionarNovaPessoa\n");
-        return null;
+        return new NovaPessoaResponse();
     }
 }

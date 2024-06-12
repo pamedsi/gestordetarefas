@@ -12,7 +12,7 @@ public class Pessoa {
     private Long id;
     @Column
     private UUID identificador;
-    @Column
+    @Column (columnDefinition = "text")
     private String nome;
     @Column
     private String departamento;
