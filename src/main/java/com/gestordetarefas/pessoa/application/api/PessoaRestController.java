@@ -13,7 +13,7 @@ public class PessoaRestController implements PessoaAPI {
     @Override
     public NovaPessoaResponse postNovaPessoa(NovaPessoaRequest colaboradorDTO) {
         log.info("[inicia]  PessoaRestController - postNovoColaborador");
-        NovaPessoaResponse novaPessoaResponse = pessoaService.adicionarNovaPessoa(colaboradorDTO);
+        NovaPessoaResponse novaPessoaResponse = pessoaService.adicionaNovaPessoa(colaboradorDTO);
         log.info("[finaliza]  PessoaRestController - postNovoColaborador\n");
         return novaPessoaResponse;
     }

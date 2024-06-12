@@ -7,5 +7,5 @@ import org.springframework.stereotype.*;
 @Service
 public interface PessoaService {
     @Transactional
-    NovaPessoaResponse adicionarNovaPessoa(NovaPessoaRequest novaPessoaDTO);
+    NovaPessoaResponse adicionaNovaPessoa(NovaPessoaRequest novaPessoaDTO);
 }
