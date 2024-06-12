@@ -1,6 +1,6 @@
 package com.gestordetarefas.tarefa.domain;
 
-import com.gestordetarefas.colaborador.domain.*;
+import com.gestordetarefas.pessoa.domain.*;
 import jakarta.persistence.*;
 
 import java.time.*;
@@ -20,7 +20,8 @@ public class Tarefa {
     @Column
     private LocalDateTime prazo;
     @Column
-    private String departamento;
+    @Enumerated(EnumType.STRING)
+    private Departamento departamento;
     @Column
     private LocalDateTime duracao;
     @ManyToOne
