@@ -1,3 +1,7 @@
 package com.gestordetarefas.pessoa.application.api;
 
-public record NovaPessoaResponse () {}
+import java.util.*;
+
+public record NovaPessoaResponse (
+        UUID identificadorDaNovaPessoa
+) {}

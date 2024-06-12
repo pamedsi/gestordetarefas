@@ -5,5 +5,5 @@ import org.springframework.stereotype.*;
 
 @Repository
 public interface PessoaRepository {
-    void salvarNovaPessoa(Pessoa pessoa);
+    void salvaNovaPessoa(Pessoa pessoa);
 }
