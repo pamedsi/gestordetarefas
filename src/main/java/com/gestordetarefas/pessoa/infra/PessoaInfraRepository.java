@@ -32,7 +32,7 @@ public class PessoaInfraRepository implements PessoaRepository {
     @Override
     public Pessoa buscaPessoaPorIdentificador(String identificador) {
         log.info("[inicia]  PessoaInfraRepository - buscaPessoaPorIdentificador");
-        Pessoa pessoa = pessoaJPARepository.findByIdentificador(UUID.fromString(identificador)).orElseThrow(
+        Pessoa pessoa = pessoaJPARepository.findByIdentificadorAndDeletadaFalse(UUID.fromString(identificador)).orElseThrow(
                 () -> new APIException("Pessoa não encontrada.", HttpStatus.NOT_FOUND)
         );
         log.info("[finaliza]  PessoaInfraRepository - buscaPessoaPorIdentificador");

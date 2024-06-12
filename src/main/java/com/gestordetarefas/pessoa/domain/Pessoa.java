@@ -18,17 +18,20 @@ public class Pessoa {
     @Column(unique = true, nullable = false)
     @Getter
     private UUID identificador;
-    @Column (columnDefinition = "text")
+    @Column (columnDefinition = "TEXT")
     private String nome;
     @Column
     @Enumerated(EnumType.STRING)
     private Departamento departamento;
+    @Column
+    private boolean deletada;
     @OneToMany(mappedBy = "pessoaAlocada")
     private List<Tarefa> tarefas;
 
     public Pessoa(PessoaRequest novaPessoaDTO) {
         identificador = UUID.randomUUID();
         nome = novaPessoaDTO.nome();
+        deletada = false;
         departamento = Departamento.valueOf(novaPessoaDTO.departamento().toUpperCase());
     }
 
@@ -38,5 +41,9 @@ public class Pessoa {
             throw new APIException("Dados idênticos aos já existentes!", HttpStatus.CONFLICT);
         nome = pessoaRequest.nome();
         departamento = novoDepartamento;
+    }
+
+    public void deleta() {
+        deletada = true;
     }
 }

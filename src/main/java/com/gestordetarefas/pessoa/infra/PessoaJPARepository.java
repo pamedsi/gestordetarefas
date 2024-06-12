@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.*;
 import java.util.*;
 
 public interface PessoaJPARepository extends JpaRepository<Pessoa, Long> {
-    Optional<Pessoa> findByIdentificador(UUID uuid);
+    Optional<Pessoa> findByIdentificadorAndDeletadaFalse(UUID uuid);
 }
