@@ -4,8 +4,6 @@ import jakarta.validation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-
 @RequestMapping("/api/pessoas")
 public interface PessoaAPI {
     @PostMapping
