@@ -6,4 +6,5 @@ import org.springframework.stereotype.*;
 @Repository
 public interface PessoaRepository {
     void salvaNovaPessoa(Pessoa pessoa);
+    Pessoa buscaPessoaPorIdentificador(String identificador);
 }
