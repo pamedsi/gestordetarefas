@@ -25,7 +25,7 @@ public class Tarefa {
     private LocalDateTime duracao;
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoaAlocado;
+    private Pessoa pessoaAlocada;
     @Column
     private boolean finalizada;
 }
