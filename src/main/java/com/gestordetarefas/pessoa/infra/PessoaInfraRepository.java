@@ -8,6 +8,8 @@ import lombok.extern.log4j.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.*;
 
+import java.util.*;
+
 @Repository
 @RequiredArgsConstructor
 @Log4j2
@@ -25,5 +27,15 @@ public class PessoaInfraRepository implements PessoaRepository {
             throw new APIException("Ocorreu um erro. Contate o suporte!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         log.info("[finaliza]  PessoaInfraRepository - salvarNovaPessoa");
+    }
+
+    @Override
+    public Pessoa buscaPessoaPorIdentificador(String identificador) {
+        log.info("[inicia]  PessoaInfraRepository - buscaPessoaPorIdentificador");
+        Pessoa pessoa = pessoaJPARepository.findByIdentificador(UUID.fromString(identificador)).orElseThrow(
+                () -> new APIException("Pessoa não encontrada.", HttpStatus.NOT_FOUND)
+        );
+        log.info("[finaliza]  PessoaInfraRepository - buscaPessoaPorIdentificador");
+        return pessoa;
     }
 }
