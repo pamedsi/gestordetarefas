@@ -14,11 +14,19 @@ public class PessoaApplicationService implements PessoaService {
     private final PessoaRepository pessoaRepository;
 
     @Override
-    public NovaPessoaResponse adicionaNovaPessoa(NovaPessoaRequest novaPessoaDTO) {
+    public NovaPessoaResponse adicionaNovaPessoa(PessoaRequest novaPessoaDTO) {
         log.info("[inicia]  PessoaApplicationService - adicionaNovaPessoa");
         Pessoa pessoa = new Pessoa(novaPessoaDTO);
         pessoaRepository.salvaNovaPessoa(pessoa);
         log.info("[finaliza]  PessoaApplicationService - adicionaNovaPessoa");
         return new NovaPessoaResponse(pessoa.getIdentificador());
+    }
+
+    @Override
+    public void alteraPessoa(PessoaRequest pessoaRequest, String identificador) {
+        log.info("[inicia]  PessoaApplicationService - alteraPessoa");
+        Pessoa pessoa = pessoaRepository.buscaPessoaPorIdentificador(identificador);
+        pessoa.atualiza(pessoaRequest);
+        log.info("[finaliza]  PessoaApplicationService - alteraPessoa");
     }
 }
