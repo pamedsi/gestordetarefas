@@ -33,7 +33,7 @@ public class Pessoa {
     }
 
     public void atualiza(PessoaRequest pessoaRequest) {
-        Departamento novoDepartamento = Departamento.valueOf(pessoaRequest.departamento().toUpperCase());;
+        Departamento novoDepartamento = Departamento.valueOf(pessoaRequest.departamento().toUpperCase());
         if (nome.equals(pessoaRequest.nome()) && departamento.equals(novoDepartamento))
             throw new APIException("Dados idênticos aos já existentes!", HttpStatus.CONFLICT);
         nome = pessoaRequest.nome();
