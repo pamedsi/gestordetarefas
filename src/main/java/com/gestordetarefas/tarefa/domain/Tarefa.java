@@ -24,8 +24,8 @@ public class Tarefa {
     @Column
     private LocalDateTime duracao;
     @ManyToOne
-    @JoinColumn(name = "colaborador_id")
-    private Colaborador colaboradorAlocado;
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoaAlocado;
     @Column
     private boolean finalizada;
 }

@@ -4,9 +4,9 @@ import jakarta.validation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/colaborador")
+@RequestMapping("/api/pessoas")
 public interface ColaboradorAPI {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    NovoColaboradorResponse postNovoColaborador(@RequestBody @Valid NovoColaboradorRequest colaboradorDTO);
+    NovaPessoaResponse postNovaPessoa(@RequestBody @Valid NovaPessoaRequest colaboradorDTO);
 }

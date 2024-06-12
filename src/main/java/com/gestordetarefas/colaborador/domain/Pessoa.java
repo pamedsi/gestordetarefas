@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.*;
 
 @Entity
-public class Colaborador {
+public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +16,6 @@ public class Colaborador {
     private String nome;
     @Column
     private String departamento;
-    @OneToMany(mappedBy = "colaboradorAlocado")
+    @OneToMany(mappedBy = "pessoaAlocada")
     private List<Tarefa> tarefas;
 }
