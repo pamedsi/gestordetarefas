@@ -1,4 +1,4 @@
-package com.gestordetarefas.colaborador.domain;
+package com.gestordetarefas.pessoa.domain;
 
 import com.gestordetarefas.tarefa.domain.*;
 import jakarta.persistence.*;
