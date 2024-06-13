@@ -1,9 +1,11 @@
 package com.gestordetarefas.tarefa.domain;
 
+import com.gestordetarefas.exception.*;
 import com.gestordetarefas.pessoa.domain.*;
 import com.gestordetarefas.tarefa.application.api.*;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.http.*;
 
 import java.time.*;
 import java.util.*;
@@ -33,6 +35,8 @@ public class Tarefa {
     private Pessoa pessoaAlocada;
     @Column
     private boolean finalizada;
+    @Column
+    private boolean deletada;
 
     public Tarefa(CriarTarefaRequest tarefaDTO) {
         identificador = UUID.randomUUID();
@@ -42,5 +46,16 @@ public class Tarefa {
         departamento = Departamento.valueOf(tarefaDTO.departamento());
         duracao = tarefaDTO.duracao();
         finalizada = false;
+        deletada = false;
+    }
+
+    public void deleta() {
+        deletada = true;
+    }
+
+    public void aloca(Pessoa pessoa) {
+        if (!pessoa.getDepartamento().equals(departamento))
+            throw new APIException("Esta pessoa não é do mesmo departamento que esta tarefa.", HttpStatus.CONFLICT);
+        pessoaAlocada = pessoa;
     }
 }
