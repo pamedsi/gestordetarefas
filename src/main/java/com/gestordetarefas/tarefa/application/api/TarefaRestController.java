@@ -18,4 +18,11 @@ public class TarefaRestController implements TarefaAPI {
         log.info("[finaliza]  TarefaRestController - postNovaTarefa\n");
         return response;
     }
+
+    @Override
+    public void putPessoaAlocada(String identificador,PessoaAlocadaRequest pessoaAlocada) {
+        log.info("[inicia]  TarefaRestController - putPessoaAlocada");
+        tarefaService.alocaTarefa(identificador, pessoaAlocada);
+        log.info("[finaliza]  TarefaRestController - putPessoaAlocada\n");
+    }
 }

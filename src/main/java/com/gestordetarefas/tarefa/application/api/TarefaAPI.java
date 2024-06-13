@@ -1,6 +1,7 @@
 package com.gestordetarefas.tarefa.application.api;
 
 import jakarta.validation.*;
+import org.hibernate.validator.constraints.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,6 @@ public interface TarefaAPI {
     TarefaCriadaResponse postNovaTarefa(@RequestBody @Valid CriarTarefaRequest tarefaDTO);
 
     @PutMapping("alocar/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    void putPessoaAlocada(@PathVariable("id") String identificador);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void putPessoaAlocada(@PathVariable("id") @UUID(message = "UUID da tarefa inválido!") String identificador, @RequestBody @Valid PessoaAlocadaRequest pessoaAlocada);
 }
