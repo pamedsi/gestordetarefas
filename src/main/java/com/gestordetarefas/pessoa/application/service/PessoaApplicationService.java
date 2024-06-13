@@ -29,4 +29,12 @@ public class PessoaApplicationService implements PessoaService {
         pessoa.atualiza(pessoaRequest);
         log.info("[finaliza]  PessoaApplicationService - alteraPessoa");
     }
+
+    @Override
+    public void deletaPessoa(String identificador) {
+        log.info("[inicia]  PessoaApplicationService - deletaPessoa");
+        Pessoa pessoa = pessoaRepository.buscaPessoaPorIdentificador(identificador);
+        pessoa.deleta();
+        log.info("[finaliza]  PessoaApplicationService - deletaPessoa");
+    }
 }

@@ -24,4 +24,11 @@ public class PessoaRestController implements PessoaAPI {
         pessoaService.alteraPessoa(pessoaRequest, id);
         log.info("[finaliza]  PessoaRestController - putPessoa\n");
     }
+
+    @Override
+    public void deletePessoa(String identificador) {
+        log.info("[inicia]  PessoaRestController - deletePessoa");
+        pessoaService.deletaPessoa(identificador);
+        log.info("[finaliza]  PessoaRestController - deletePessoa\n");
+    }
 }

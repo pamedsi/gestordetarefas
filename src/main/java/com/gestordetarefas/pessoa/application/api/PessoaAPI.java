@@ -13,4 +13,8 @@ public interface PessoaAPI {
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void putPessoa(@RequestBody @Valid PessoaRequest pessoaRequest, @PathVariable("id") @UUID(message = "UUID inválido!") String identificador);
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deletePessoa(@PathVariable("id") @UUID(message = "UUID inválido!") String identificador);
 }

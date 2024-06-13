@@ -9,4 +9,6 @@ public interface PessoaService {
     NovaPessoaResponse adicionaNovaPessoa(PessoaRequest novaPessoaDTO);
     @Transactional
     void alteraPessoa(PessoaRequest pessoaRequest, String identificador);
+    @Transactional
+    void deletaPessoa(String identificador);
 }
