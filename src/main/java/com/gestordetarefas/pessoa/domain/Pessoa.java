@@ -22,6 +22,7 @@ public class Pessoa {
     private String nome;
     @Column
     @Enumerated(EnumType.STRING)
+    @Getter
     private Departamento departamento;
     @Column
     private boolean deletada;
