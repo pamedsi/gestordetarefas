@@ -58,4 +58,8 @@ public class Tarefa {
             throw new APIException("Esta pessoa não é do mesmo departamento que esta tarefa.", HttpStatus.CONFLICT);
         pessoaAlocada = pessoa;
     }
+
+    public void finaliza() {
+        finalizada = true;
+    }
 }
