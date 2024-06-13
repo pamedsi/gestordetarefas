@@ -29,7 +29,7 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     private Departamento departamento;
     @Column
-    private int duracao;
+    private int duracaoEmHoras;
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoaAlocada;
@@ -44,7 +44,7 @@ public class Tarefa {
         descricao = tarefaDTO.descricao();
         prazo = tarefaDTO.prazo();
         departamento = Departamento.valueOf(tarefaDTO.departamento());
-        duracao = tarefaDTO.duracao();
+        duracaoEmHoras = tarefaDTO.duracao();
         finalizada = false;
         deletada = false;
     }
