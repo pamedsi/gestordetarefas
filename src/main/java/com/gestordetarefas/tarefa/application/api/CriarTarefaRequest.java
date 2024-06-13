@@ -9,8 +9,8 @@ import org.springframework.format.annotation.*;
 import java.time.*;
 
 public record CriarTarefaRequest (
-        @Size(min = 1, max = 255)
-        @NotBlank
+        @Size(min = 1, max = 255, message = "Campo 'titulo' não pode ser maior que 255 caracteres.")
+        @NotBlank (message = "Campo 'titulo' não pode faltar.")
         String titulo,
         String descricao,
         @JsonFormat(pattern = "dd/MM/yyyy")

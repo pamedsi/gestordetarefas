@@ -9,4 +9,8 @@ public interface TarefaAPI {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     TarefaCriadaResponse postNovaTarefa(@RequestBody @Valid CriarTarefaRequest tarefaDTO);
+
+    @PutMapping("alocar/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    void putPessoaAlocada(@PathVariable("id") String identificador);
 }
