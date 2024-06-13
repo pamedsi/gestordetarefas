@@ -5,6 +5,7 @@ import com.gestordetarefas.pessoa.application.repository.*;
 import com.gestordetarefas.pessoa.domain.*;
 import lombok.*;
 import lombok.extern.log4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.*;
 
@@ -37,5 +38,13 @@ public class PessoaInfraRepository implements PessoaRepository {
         );
         log.info("[finaliza]  PessoaInfraRepository - buscaPessoaPorIdentificador");
         return pessoa;
+    }
+
+    @Override
+    public Page<Pessoa> buscaPessoas(Pageable pageable) {
+        log.info("[inicia]  PessoaInfraRepository - buscaPessoas");
+        Page<Pessoa> pessoas = pessoaJPARepository.findAllByDeletadaFalse(pageable);
+        log.info("[finaliza]  PessoaInfraRepository - buscaPessoas");
+        return pessoas;
     }
 }
