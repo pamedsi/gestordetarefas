@@ -28,6 +28,7 @@ public class Tarefa {
     @Column
     @Enumerated(EnumType.STRING)
     private Departamento departamento;
+    @Getter
     @Column
     private int duracaoEmHoras;
     @ManyToOne
@@ -61,5 +62,9 @@ public class Tarefa {
 
     public void finaliza() {
         finalizada = true;
+    }
+
+    public boolean estaFinalizada() {
+        return finalizada;
     }
 }
