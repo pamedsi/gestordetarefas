@@ -1,5 +1,7 @@
 package com.gestordetarefas.tarefa.application.service;
 
+import com.gestordetarefas.pessoa.application.repository.*;
+import com.gestordetarefas.pessoa.domain.*;
 import com.gestordetarefas.tarefa.application.api.*;
 import com.gestordetarefas.tarefa.application.repository.*;
 import com.gestordetarefas.tarefa.domain.*;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.*;
 @RequiredArgsConstructor
 public class TarefaApplicationService implements TarefaService {
     private final TarefaRepository tarefaRepository;
+    private final PessoaRepository pessoaRepository;
 
     @Override
     public TarefaCriadaResponse adicionaTarefa(CriarTarefaRequest tarefaDTO) {
@@ -20,5 +23,14 @@ public class TarefaApplicationService implements TarefaService {
         tarefaRepository.salvaNovaTarefa(tarefa);
         log.info("[finaliza]  TarefaApplicationService - adicionaTarefa");
         return new TarefaCriadaResponse(tarefa.getIdentificador());
+    }
+
+    @Override
+    public void alocaTarefa(String identificador, PessoaAlocadaRequest pessoaAlocada) {
+        log.info("[inicia]  TarefaApplicationService - alocaTarefa");
+        Tarefa tarefa = tarefaRepository.buscaTarefaPorIdentificador(identificador);
+        Pessoa pessoa = pessoaRepository.buscaPessoaPorIdentificador(pessoaAlocada.identificadorDaPessoa());
+        tarefa.aloca(pessoa);
+        log.info("[finaliza]  TarefaApplicationService - alocaTarefa");
     }
 }
