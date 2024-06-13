@@ -3,6 +3,7 @@ package com.gestordetarefas.pessoa.application.api;
 import com.gestordetarefas.pessoa.application.service.*;
 import lombok.*;
 import lombok.extern.log4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,5 +31,13 @@ public class PessoaRestController implements PessoaAPI {
         log.info("[inicia]  PessoaRestController - deletePessoa");
         pessoaService.deletaPessoa(identificador);
         log.info("[finaliza]  PessoaRestController - deletePessoa\n");
+    }
+
+    @Override
+    public Page<DetalhesDaPessoa> getPessoas(Pageable pageable) {
+        log.info("[inicia]  PessoaRestController - getPessoas");
+        Page<DetalhesDaPessoa> pessoas = pessoaService.buscaPessoas(pageable);
+        log.info("[finaliza]  PessoaRestController - getPessoas\n");
+        return pessoas;
     }
 }
