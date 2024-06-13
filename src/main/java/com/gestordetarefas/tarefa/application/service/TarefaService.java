@@ -9,4 +9,6 @@ public interface TarefaService {
     TarefaCriadaResponse adicionaTarefa(CriarTarefaRequest tarefaDTO);
     @Transactional
     void alocaTarefa(String identificador, PessoaAlocadaRequest pessoaAlocada);
+    @Transactional
+    void finalizaTarefa(String identificador);
 }

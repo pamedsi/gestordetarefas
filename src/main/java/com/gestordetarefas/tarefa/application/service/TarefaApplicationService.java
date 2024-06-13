@@ -33,4 +33,12 @@ public class TarefaApplicationService implements TarefaService {
         tarefa.aloca(pessoa);
         log.info("[finaliza]  TarefaApplicationService - alocaTarefa");
     }
+
+    @Override
+    public void finalizaTarefa(String identificador) {
+        log.info("[inicia]  TarefaApplicationService - finalizaTarefa");
+        Tarefa tarefa = tarefaRepository.buscaTarefaPorIdentificador(identificador);
+        tarefa.finaliza();
+        log.info("[finaliza]  TarefaApplicationService - finalizaTarefa");
+    }
 }
