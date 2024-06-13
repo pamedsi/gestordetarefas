@@ -5,6 +5,7 @@ import com.gestordetarefas.pessoa.application.repository.*;
 import com.gestordetarefas.pessoa.domain.*;
 import lombok.*;
 import lombok.extern.log4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
 
 @Service
@@ -36,5 +37,14 @@ public class PessoaApplicationService implements PessoaService {
         Pessoa pessoa = pessoaRepository.buscaPessoaPorIdentificador(identificador);
         pessoa.deleta();
         log.info("[finaliza]  PessoaApplicationService - deletaPessoa");
+    }
+
+    @Override
+    public Page<DetalhesDaPessoa> buscaPessoas(Pageable pageable) {
+        log.info("[inicia]  PessoaApplicationService - buscaPessoas");
+        Page<Pessoa> pessoasEmPersistencia = pessoaRepository.buscaPessoas(pageable);
+        Page<DetalhesDaPessoa> pessoasEmDTO = DetalhesDaPessoa.converterParaPageDTO(pessoasEmPersistencia);
+        log.info("[finaliza]  PessoaApplicationService - buscaPessoas");
+        return pessoasEmDTO;
     }
 }
