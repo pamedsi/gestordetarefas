@@ -11,7 +11,11 @@ public interface TarefaAPI {
     @ResponseStatus(HttpStatus.CREATED)
     TarefaCriadaResponse postNovaTarefa(@RequestBody @Valid CriarTarefaRequest tarefaDTO);
 
-    @PutMapping("alocar/{id}")
+    @PatchMapping("alocar/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void putPessoaAlocada(@PathVariable("id") @UUID(message = "UUID da tarefa inválido!") String identificador, @RequestBody @Valid PessoaAlocadaRequest pessoaAlocada);
+    void patchAlocaPessoa(@PathVariable("id") @UUID(message = "UUID da tarefa inválido!") String identificador, @RequestBody @Valid PessoaAlocadaRequest pessoaAlocada);
+
+    @PatchMapping("finalizar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void patchFinalizaTarefa(@PathVariable("id") @UUID(message = "UUID da tarefa inválido!") String identificador);
 }
