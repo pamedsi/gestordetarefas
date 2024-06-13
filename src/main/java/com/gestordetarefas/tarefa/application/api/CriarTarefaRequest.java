@@ -1,5 +1,6 @@
 package com.gestordetarefas.tarefa.application.api;
 
+import com.fasterxml.jackson.annotation.*;
 import com.gestordetarefas.pessoa.application.api.*;
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +13,7 @@ public record CriarTarefaRequest (
         @NotBlank
         String titulo,
         String descricao,
-        @DateTimeFormat
+        @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate prazo,
         @DepartamentoValido
         String departamento,
