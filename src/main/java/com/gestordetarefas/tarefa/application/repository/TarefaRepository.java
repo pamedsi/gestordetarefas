@@ -6,4 +6,5 @@ import org.springframework.stereotype.*;
 @Repository
 public interface TarefaRepository {
     void salvaNovaTarefa(Tarefa tarefa);
+    Tarefa buscaTarefaPorIdentificador(String identificador);
 }
