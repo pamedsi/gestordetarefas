@@ -18,6 +18,7 @@ public class Pessoa {
     @Column(unique = true, nullable = false)
     @Getter
     private UUID identificador;
+    @Getter
     @Column (columnDefinition = "TEXT")
     private String nome;
     @Column
@@ -46,5 +47,12 @@ public class Pessoa {
 
     public void deleta() {
         deletada = true;
+    }
+
+    public int getHorasTrabalhadas() {
+        return (int) tarefas.stream()
+                .filter(Tarefa::estaFinalizada)
+                .mapToLong(Tarefa::getDuracaoEmHoras)
+                .sum();
     }
 }
