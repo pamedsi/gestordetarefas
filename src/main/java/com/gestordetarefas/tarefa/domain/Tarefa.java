@@ -15,7 +15,7 @@ public class Tarefa {
     private UUID identificador;
     @Column
     private String titulo;
-    @Column
+    @Column (columnDefinition = "TEXT")
     private String descricao;
     @Column
     private LocalDateTime prazo;
