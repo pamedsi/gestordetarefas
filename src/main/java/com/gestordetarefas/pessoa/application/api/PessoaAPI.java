@@ -23,5 +23,5 @@ public interface PessoaAPI {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    Page<DetalhesDaPessoa> getPessoas(@PageableDefault(direction = Sort.Direction.ASC, sort = { "nome" }) Pageable pageable);
+    PagedModel<DetalhesDaPessoa>  getPessoas(@PageableDefault(direction = Sort.Direction.ASC, sort = { "nome" }) Pageable pageable);
 }

@@ -2,6 +2,7 @@ package com.gestordetarefas.pessoa.application.service;
 
 import com.gestordetarefas.pessoa.application.api.*;
 import org.springframework.data.domain.*;
+import org.springframework.data.web.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
@@ -12,5 +13,5 @@ public interface PessoaService {
     void alteraPessoa(PessoaRequest pessoaRequest, String identificador);
     @Transactional
     void deletaPessoa(String identificador);
-    Page<DetalhesDaPessoa> buscaPessoas(Pageable pageable);
+    PagedModel<DetalhesDaPessoa> buscaPessoas(Pageable pageable);
 }

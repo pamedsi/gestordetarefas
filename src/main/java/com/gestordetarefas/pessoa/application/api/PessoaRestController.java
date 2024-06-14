@@ -4,6 +4,7 @@ import com.gestordetarefas.pessoa.application.service.*;
 import lombok.*;
 import lombok.extern.log4j.*;
 import org.springframework.data.domain.*;
+import org.springframework.data.web.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,9 +35,9 @@ public class PessoaRestController implements PessoaAPI {
     }
 
     @Override
-    public Page<DetalhesDaPessoa> getPessoas(Pageable pageable) {
+    public PagedModel<DetalhesDaPessoa>  getPessoas(Pageable pageable) {
         log.info("[inicia]  PessoaRestController - getPessoas");
-        Page<DetalhesDaPessoa> pessoas = pessoaService.buscaPessoas(pageable);
+        PagedModel<DetalhesDaPessoa> pessoas = pessoaService.buscaPessoas(pageable);
         log.info("[finaliza]  PessoaRestController - getPessoas\n");
         return pessoas;
     }

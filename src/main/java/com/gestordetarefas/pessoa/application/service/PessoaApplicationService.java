@@ -6,6 +6,7 @@ import com.gestordetarefas.pessoa.domain.*;
 import lombok.*;
 import lombok.extern.log4j.*;
 import org.springframework.data.domain.*;
+import org.springframework.data.web.*;
 import org.springframework.stereotype.*;
 
 @Service
@@ -40,10 +41,10 @@ public class PessoaApplicationService implements PessoaService {
     }
 
     @Override
-    public Page<DetalhesDaPessoa> buscaPessoas(Pageable pageable) {
+    public PagedModel<DetalhesDaPessoa> buscaPessoas(Pageable pageable) {
         log.info("[inicia]  PessoaApplicationService - buscaPessoas");
         Page<Pessoa> pessoasEmPersistencia = pessoaRepository.buscaPessoas(pageable);
-        Page<DetalhesDaPessoa> pessoasEmDTO = DetalhesDaPessoa.converterParaPageDTO(pessoasEmPersistencia);
+        PagedModel<DetalhesDaPessoa> pessoasEmDTO = DetalhesDaPessoa.converterParaPageDTO(pessoasEmPersistencia);
         log.info("[finaliza]  PessoaApplicationService - buscaPessoas");
         return pessoasEmDTO;
     }
