@@ -28,7 +28,7 @@ public interface PessoaAPI {
     @GetMapping("/gastos")
     @ResponseStatus(HttpStatus.OK)
     PagedModel<DetalhesDaPessoaComMediaDeHorasGastas> getPessoasPorPeriodo(
-            @RequestParam(value = "nome", defaultValue = "", required = false) String nome,
+            @RequestParam(value = "nome") String nome,
             @PageableDefault(direction = Sort.Direction.ASC, sort = { "nome" }) Pageable pageable
     );
 }
