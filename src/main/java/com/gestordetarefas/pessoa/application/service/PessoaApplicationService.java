@@ -48,4 +48,13 @@ public class PessoaApplicationService implements PessoaService {
         log.info("[finaliza]  PessoaApplicationService - buscaPessoas");
         return pessoasEmDTO;
     }
+
+    @Override
+    public PagedModel<DetalhesDaPessoaComMediaDeHorasGastas> buscaPessoasPorNome(String nome, Pageable pageable) {
+        log.info("[inicia]  PessoaApplicationService - buscaPessoasPorNome");
+        Page<Pessoa> pessoasEmPersistencia = pessoaRepository.buscaPessoasPorNome(nome, pageable);
+        var pessoasEmDTO = DetalhesDaPessoaComMediaDeHorasGastas.converterParaPageDTO(pessoasEmPersistencia);
+        log.info("[finaliza]  PessoaApplicationService - buscaPessoasPorNome");
+        return pessoasEmDTO;
+    }
 }

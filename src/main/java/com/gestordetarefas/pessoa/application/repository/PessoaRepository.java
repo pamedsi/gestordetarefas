@@ -9,4 +9,5 @@ public interface PessoaRepository {
     void salvaNovaPessoa(Pessoa pessoa);
     Pessoa buscaPessoaPorIdentificador(String identificador);
     Page<Pessoa> buscaPessoas(Pageable pageable);
+    Page<Pessoa> buscaPessoasPorNome(String nome, Pageable pageable);
 }

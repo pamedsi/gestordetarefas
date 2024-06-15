@@ -14,4 +14,5 @@ public interface PessoaService {
     @Transactional
     void deletaPessoa(String identificador);
     PagedModel<DetalhesDaPessoa> buscaPessoas(Pageable pageable);
+    PagedModel<DetalhesDaPessoaComMediaDeHorasGastas> buscaPessoasPorNome(String nome, Pageable pageable);
 }

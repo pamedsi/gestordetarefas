@@ -35,10 +35,18 @@ public class PessoaRestController implements PessoaAPI {
     }
 
     @Override
-    public PagedModel<DetalhesDaPessoa>  getPessoas(Pageable pageable) {
+    public PagedModel<DetalhesDaPessoa> getPessoas(Pageable pageable) {
         log.info("[inicia]  PessoaRestController - getPessoas");
         PagedModel<DetalhesDaPessoa> pessoas = pessoaService.buscaPessoas(pageable);
         log.info("[finaliza]  PessoaRestController - getPessoas\n");
+        return pessoas;
+    }
+
+    @Override
+    public PagedModel<DetalhesDaPessoaComMediaDeHorasGastas> getPessoasPorPeriodo(String nome, Pageable pageable) {
+        log.info("[inicia]  PessoaRestController - getPessoasPorPeriodo");
+        PagedModel<DetalhesDaPessoaComMediaDeHorasGastas> pessoas = pessoaService.buscaPessoasPorNome(nome, pageable);
+        log.info("[finaliza]  PessoaRestController - getPessoasPorPeriodo\n");
         return pessoas;
     }
 }

@@ -55,4 +55,10 @@ public class Pessoa {
                 .mapToLong(Tarefa::getDuracaoEmHoras)
                 .sum();
     }
+
+    public int getMediaDeHorasTrabalhadas() {
+        List<Tarefa> tarefasConcluidas = tarefas.stream().filter(Tarefa::estaFinalizada).toList();
+        if (tarefasConcluidas.isEmpty()) return 0;
+        return ((int) tarefasConcluidas.stream().mapToLong(Tarefa::getDuracaoEmHoras).sum()) / tarefasConcluidas.size();
+    }
 }
