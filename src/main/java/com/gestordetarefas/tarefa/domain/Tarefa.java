@@ -1,5 +1,6 @@
 package com.gestordetarefas.tarefa.domain;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.exception.*;
 import com.gestordetarefas.pessoa.domain.*;
 import com.gestordetarefas.tarefa.application.api.*;
@@ -29,8 +30,7 @@ public class Tarefa {
     @Column
     private LocalDate prazo;
     @Getter
-    @Column
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Departamento departamento;
     @Getter
     @Column
@@ -43,24 +43,20 @@ public class Tarefa {
     @Column
     private boolean deletada;
 
-    public Tarefa(CriarTarefaRequest tarefaDTO) {
+    public Tarefa(CriarTarefaRequest tarefaDTO, Departamento departamento) {
         identificador = UUID.randomUUID();
         titulo = tarefaDTO.titulo();
         descricao = tarefaDTO.descricao();
         prazo = tarefaDTO.prazo();
-        departamento = Departamento.valueOf(tarefaDTO.departamento().toUpperCase());
+        this.departamento = departamento;
         duracaoEmHoras = tarefaDTO.duracao();
         finalizada = false;
         deletada = false;
     }
 
-    public void deleta() {
-        deletada = true;
-    }
-
     public void aloca(Pessoa pessoa) {
         if (!pessoa.getDepartamento().equals(departamento))
-            throw new APIException("Esta pessoa não é do mesmo departamento que esta tarefa.", HttpStatus.CONFLICT);
+            throw new APIException("Esta pessoa não é do mesmo identificadorDoDepartamento que esta tarefa.", HttpStatus.CONFLICT);
         pessoaAlocada = pessoa;
     }
 
