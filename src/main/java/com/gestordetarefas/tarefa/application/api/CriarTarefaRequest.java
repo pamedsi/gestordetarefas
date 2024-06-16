@@ -1,9 +1,9 @@
 package com.gestordetarefas.tarefa.application.api;
 
 import com.fasterxml.jackson.annotation.*;
-import com.gestordetarefas.pessoa.application.api.*;
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.*;
 import org.springframework.format.annotation.*;
 
 import java.time.*;
@@ -15,7 +15,7 @@ public record CriarTarefaRequest (
         String descricao,
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate prazo,
-        @DepartamentoValido
+        @UUID(message = "UUID do departamento inválido!")
         String departamento,
         @NumberFormat
         int duracao
