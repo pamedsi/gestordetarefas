@@ -1,7 +1,9 @@
 package com.gestordetarefas.tarefa.application.api;
 
 import jakarta.validation.*;
-import org.hibernate.validator.constraints.*;
+import org.hibernate.validator.constraints.UUID;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,4 +20,8 @@ public interface TarefaAPI {
     @PatchMapping("finalizar/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void patchFinalizaTarefa(@PathVariable("id") @UUID(message = "UUID da tarefa inválido!") String identificador);
+
+    @GetMapping("pendentes")
+    @ResponseStatus(HttpStatus.OK)
+    PagedModel<TarefaPendenteDTO> getTarefasPendentes(@PageableDefault(size = 3, direction = Sort.Direction.ASC, sort = { "prazo" }) Pageable pageable);
 }
