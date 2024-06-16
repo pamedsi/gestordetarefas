@@ -4,8 +4,9 @@ CREATE TABLE if not exists departamento (
                                             nome VARCHAR(255) UNIQUE NOT NULL
 );
 
-INSERT INTO public.departamento (identificador, nome) VALUES
-                                                          (gen_random_uuid(), 'COMERCIAL'),
-                                                          (gen_random_uuid(), 'DESENVOLVIMENTO'),
-                                                          (gen_random_uuid(), 'FINANCEIRO')
-;
+INSERT INTO public.departamento (identificador, nome, deletado)
+VALUES
+    (gen_random_uuid(), 'COMERCIAL', false),
+    (gen_random_uuid(), 'DESENVOLVIMENTO', false),
+    (gen_random_uuid(), 'FINANCEIRO', false)
+ON CONFLICT (nome) DO NOTHING;
