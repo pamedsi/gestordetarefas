@@ -13,8 +13,7 @@ public record TarefaPendenteDTO(
         String titulo,
         String descricao,
         LocalDate prazo,
-        @Enumerated(EnumType.STRING)
-        Departamento departamento,
+        String departamento,
         int duracaoEmHoras
 ) {
     public TarefaPendenteDTO(Tarefa tarefa){
@@ -23,7 +22,7 @@ public record TarefaPendenteDTO(
                 tarefa.getTitulo(),
                 tarefa.getDescricao(),
                 tarefa.getPrazo(),
-                tarefa.getDepartamento(),
+                tarefa.getDepartamento().getNome(),
                 tarefa.getDuracaoEmHoras()
         );
     }

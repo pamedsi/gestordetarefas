@@ -1,5 +1,6 @@
 package com.gestordetarefas.tarefa.application.service;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.pessoa.application.repository.*;
 import com.gestordetarefas.pessoa.domain.*;
 import com.gestordetarefas.tarefa.application.api.*;
@@ -18,11 +19,13 @@ import org.springframework.stereotype.*;
 public class TarefaApplicationService implements TarefaService {
     private final TarefaRepository tarefaRepository;
     private final PessoaRepository pessoaRepository;
+    private final DepartamentoRepository departamentoRepository;
 
     @Override
     public TarefaCriadaResponse adicionaTarefa(CriarTarefaRequest tarefaDTO) {
         log.info("[inicia]  TarefaApplicationService - adicionaTarefa");
-        Tarefa tarefa = new Tarefa(tarefaDTO);
+        Departamento departamento = departamentoRepository.buscaDepartamentoPorIdentificador(tarefaDTO.departamento());
+        Tarefa tarefa = new Tarefa(tarefaDTO, departamento);
         tarefaRepository.salvaNovaTarefa(tarefa);
         log.info("[finaliza]  TarefaApplicationService - adicionaTarefa");
         return new TarefaCriadaResponse(tarefa.getIdentificador());
