@@ -7,12 +7,14 @@ import org.springframework.data.web.*;
 import java.util.*;
 
 public record DetalhesDaPessoa (
+        UUID identificador,
         String nome,
         String departamento,
         int totalDeHorasGastasNasTarefas
 ) {
     public DetalhesDaPessoa (Pessoa pessoa) {
         this (
+                pessoa.getIdentificador(),
                 pessoa.getNome(),
                 pessoa.getDepartamento().getNome(),
                 pessoa.getHorasTrabalhadas()
