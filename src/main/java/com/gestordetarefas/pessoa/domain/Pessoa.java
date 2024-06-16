@@ -1,5 +1,6 @@
 package com.gestordetarefas.pessoa.domain;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.exception.*;
 import com.gestordetarefas.pessoa.application.api.*;
 import com.gestordetarefas.tarefa.domain.*;
@@ -21,24 +22,22 @@ public class Pessoa {
     @Getter
     @Column (columnDefinition = "TEXT")
     private String nome;
-    @Column
-    @Enumerated(EnumType.STRING)
     @Getter
+    @ManyToOne
     private Departamento departamento;
     @Column
     private boolean deletada;
     @OneToMany(mappedBy = "pessoaAlocada")
     private List<Tarefa> tarefas;
 
-    public Pessoa(PessoaRequest novaPessoaDTO) {
+    public Pessoa(PessoaRequest novaPessoaDTO, Departamento departamento) {
         identificador = UUID.randomUUID();
         nome = novaPessoaDTO.nome();
+        this.departamento = departamento;
         deletada = false;
-        departamento = Departamento.valueOf(novaPessoaDTO.departamento().toUpperCase());
     }
 
-    public void atualiza(PessoaRequest pessoaRequest) {
-        Departamento novoDepartamento = Departamento.valueOf(pessoaRequest.departamento().toUpperCase());
+    public void atualiza(PessoaRequest pessoaRequest, Departamento novoDepartamento) {
         if (nome.equals(pessoaRequest.nome()) && departamento.equals(novoDepartamento))
             throw new APIException("Dados idênticos aos já existentes!", HttpStatus.CONFLICT);
         nome = pessoaRequest.nome();
