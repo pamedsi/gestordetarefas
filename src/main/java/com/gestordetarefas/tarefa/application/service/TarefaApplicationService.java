@@ -7,6 +7,9 @@ import com.gestordetarefas.tarefa.application.repository.*;
 import com.gestordetarefas.tarefa.domain.*;
 import lombok.*;
 import lombok.extern.log4j.*;
+import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.*;
 import org.springframework.stereotype.*;
 
 @Service
@@ -40,5 +43,14 @@ public class TarefaApplicationService implements TarefaService {
         Tarefa tarefa = tarefaRepository.buscaTarefaPorIdentificador(identificador);
         tarefa.finaliza();
         log.info("[finaliza]  TarefaApplicationService - finalizaTarefa");
+    }
+
+    @Override
+    public PagedModel<TarefaPendenteDTO> buscaTarefasPendentes(Pageable pageable) {
+        log.info("[inicia]  TarefaApplicationService - buscaTarefasPendentes");
+        Page<Tarefa> tarefasEmPersistencia = tarefaRepository.buscaTarefasPendentes(pageable);
+        PagedModel<TarefaPendenteDTO> pessoasEmDTO = TarefaPendenteDTO.converterParaPageDTO(tarefasEmPersistencia);
+        log.info("[finaliza]  TarefaApplicationService - buscaTarefasPendentes");
+        return pessoasEmDTO;
     }
 }
