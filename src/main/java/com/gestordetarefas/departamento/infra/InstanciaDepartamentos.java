@@ -1,7 +1,6 @@
 package com.gestordetarefas.departamento.infra;
 
 import com.gestordetarefas.exception.*;
-import com.gestordetarefas.pessoa.application.repository.*;
 import lombok.*;
 import lombok.extern.log4j.*;
 import org.springframework.boot.context.event.*;
@@ -18,7 +17,6 @@ import javax.sql.*;
 @Log4j2
 public class InstanciaDepartamentos {
     private final DataSource dataSource;
-    private final DepartamentoRepository departamentoRepository;
 
     @EventListener(ApplicationReadyEvent.class)
     public void executeScript() {
