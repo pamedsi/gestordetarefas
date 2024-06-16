@@ -20,11 +20,15 @@ public class Tarefa {
     @Getter
     private UUID identificador;
     @Column
+    @Getter
     private String titulo;
+    @Getter
     @Column (columnDefinition = "TEXT")
     private String descricao;
+    @Getter
     @Column
     private LocalDate prazo;
+    @Getter
     @Column
     @Enumerated(EnumType.STRING)
     private Departamento departamento;
@@ -44,7 +48,7 @@ public class Tarefa {
         titulo = tarefaDTO.titulo();
         descricao = tarefaDTO.descricao();
         prazo = tarefaDTO.prazo();
-        departamento = Departamento.valueOf(tarefaDTO.departamento());
+        departamento = Departamento.valueOf(tarefaDTO.departamento().toUpperCase());
         duracaoEmHoras = tarefaDTO.duracao();
         finalizada = false;
         deletada = false;
