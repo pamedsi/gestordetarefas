@@ -23,5 +23,5 @@ public interface TarefaAPI {
 
     @GetMapping("pendentes")
     @ResponseStatus(HttpStatus.OK)
-    PagedModel<TarefaPendenteDTO> getTarefasPendentes(@PageableDefault(size = 3, direction = Sort.Direction.ASC, sort = { "prazo" }) Pageable pageable);
+    PagedModel<TarefaPendenteDTO> getTarefasPendentes(@PageableDefault(size = 3) Pageable pageable);
 }
