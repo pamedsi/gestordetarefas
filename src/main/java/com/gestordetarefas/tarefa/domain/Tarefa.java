@@ -56,7 +56,7 @@ public class Tarefa {
 
     public void aloca(Pessoa pessoa) {
         if (!pessoa.getDepartamento().equals(departamento))
-            throw new APIException("Esta pessoa não é do mesmo identificadorDoDepartamento que esta tarefa.", HttpStatus.CONFLICT);
+            throw new APIException("Esta pessoa não é do mesmo departamento que esta tarefa.", HttpStatus.CONFLICT);
         pessoaAlocada = pessoa;
     }
 
