@@ -1,6 +1,5 @@
 package com.gestordetarefas.pessoa.application.api;
 
-import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.pessoa.domain.*;
 import org.springframework.data.domain.*;
 import org.springframework.data.web.*;
