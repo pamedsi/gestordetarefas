@@ -1,7 +1,6 @@
 package com.gestordetarefas.tarefa.application.api;
 
 import com.gestordetarefas.tarefa.domain.*;
-import jakarta.persistence.*;
 import org.springframework.data.domain.*;
 import org.springframework.data.web.*;
 
