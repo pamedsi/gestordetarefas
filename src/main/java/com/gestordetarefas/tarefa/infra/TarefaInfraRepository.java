@@ -5,6 +5,7 @@ import com.gestordetarefas.tarefa.application.repository.*;
 import com.gestordetarefas.tarefa.domain.*;
 import lombok.*;
 import lombok.extern.log4j.*;
+import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.*;
 
@@ -32,9 +33,17 @@ public class TarefaInfraRepository implements TarefaRepository {
     public Tarefa buscaTarefaPorIdentificador(String identificador) {
         log.info("[inicia]  TarefaInfraRepository - buscaTarefaPorIdentificador");
         Tarefa tarefa = tarefaJPARepository.findByIdentificadorAndDeletadaFalse(UUID.fromString(identificador))
-                .orElseThrow( () -> new APIException("Tarefa não encontrada!", HttpStatus.NOT_FOUND)
+                .orElseThrow(() -> new APIException("Tarefa não encontrada!", HttpStatus.NOT_FOUND)
         );
         log.info("[finaliza]  TarefaInfraRepository - buscaTarefaPorIdentificador");
         return tarefa;
+    }
+
+    @Override
+    public Page<Tarefa> buscaTarefasPendentes(Pageable pageable) {
+        log.info("[inicia]  TarefaInfraRepository - buscaTarefasPendentes");
+        Page<Tarefa> tarefas = tarefaJPARepository.findAllByDeletadaFalseAndPessoaAlocadaNullOrderByPrazoAsc(pageable);
+        log.info("[finaliza]  TarefaInfraRepository - buscaTarefasPendentes");
+        return tarefas;
     }
 }
