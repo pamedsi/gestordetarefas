@@ -1,5 +1,6 @@
 package com.gestordetarefas.tarefa.infra;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.exception.*;
 import com.gestordetarefas.tarefa.application.repository.*;
 import com.gestordetarefas.tarefa.domain.*;
@@ -45,5 +46,13 @@ public class TarefaInfraRepository implements TarefaRepository {
         Page<Tarefa> tarefas = tarefaJPARepository.findAllByDeletadaFalseAndPessoaAlocadaNullOrderByPrazoAsc(pageable);
         log.info("[finaliza]  TarefaInfraRepository - buscaTarefasPendentes");
         return tarefas;
+    }
+
+    @Override
+    public int contaTarefasPorDepartamento(Departamento departamento) {
+        log.info("[inicia]  TarefaInfraRepository - contaTarefasPorDepartamento");
+        int quantidadeDeTarefas = tarefaJPARepository.countByDepartamento(departamento);
+        log.info("[finaliza]  TarefaInfraRepository - contaTarefasPorDepartamento");
+        return quantidadeDeTarefas;
     }
 }
