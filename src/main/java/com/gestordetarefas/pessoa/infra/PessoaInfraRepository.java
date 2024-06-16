@@ -1,5 +1,6 @@
 package com.gestordetarefas.pessoa.infra;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.exception.*;
 import com.gestordetarefas.pessoa.application.repository.*;
 import com.gestordetarefas.pessoa.domain.*;
@@ -72,6 +73,14 @@ public class PessoaInfraRepository implements PessoaRepository {
         Page<Pessoa> resultado = new PageImpl<>(query.getResultList(), pageable, productsCount);
         log.info("[finaliza]  PessoaInfraRepository - buscaPessoasPorNome");
         return resultado;
+    }
+
+    @Override
+    public int contaPessoasPorDepartamento(Departamento departamento) {
+        log.info("[inicia]  PessoaInfraRepository - contaPessoasPorDepartamento");
+        int quantidadeDePessoas = pessoaJPARepository.countByDepartamento(departamento);
+        log.info("[finaliza]  PessoaInfraRepository - contaPessoasPorDepartamento");
+        return quantidadeDePessoas;
     }
 
     private Predicate criaPredicate(Root<Pessoa> root, String nome){
