@@ -1,7 +1,7 @@
 package com.gestordetarefas.pessoa.application.api;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.pessoa.domain.*;
-import com.gestordetarefas.tarefa.domain.*;
 import org.springframework.data.domain.*;
 import org.springframework.data.web.*;
 
@@ -9,13 +9,13 @@ import java.util.*;
 
 public record DetalhesDaPessoa (
         String nome,
-        Departamento departamento,
+        String departamento,
         int totalDeHorasGastasNasTarefas
 ) {
     public DetalhesDaPessoa (Pessoa pessoa) {
         this (
                 pessoa.getNome(),
-                pessoa.getDepartamento(),
+                pessoa.getDepartamento().getNome(),
                 pessoa.getHorasTrabalhadas()
         );
     }
