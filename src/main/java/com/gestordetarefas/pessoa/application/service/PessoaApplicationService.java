@@ -1,5 +1,6 @@
 package com.gestordetarefas.pessoa.application.service;
 
+import com.gestordetarefas.departamento.domain.*;
 import com.gestordetarefas.pessoa.application.api.*;
 import com.gestordetarefas.pessoa.application.repository.*;
 import com.gestordetarefas.pessoa.domain.*;
@@ -14,11 +15,13 @@ import org.springframework.stereotype.*;
 @RequiredArgsConstructor
 public class PessoaApplicationService implements PessoaService {
     private final PessoaRepository pessoaRepository;
+    private final DepartamentoRepository departamentoRepository;
 
     @Override
     public NovaPessoaResponse adicionaNovaPessoa(PessoaRequest novaPessoaDTO) {
         log.info("[inicia]  PessoaApplicationService - adicionaNovaPessoa");
-        Pessoa pessoa = new Pessoa(novaPessoaDTO);
+        Departamento departamento = departamentoRepository.buscaDepartamentoPorIdentificador(novaPessoaDTO.identificadorDoDepartamento());
+        Pessoa pessoa = new Pessoa(novaPessoaDTO, departamento);
         pessoaRepository.salvaNovaPessoa(pessoa);
         log.info("[finaliza]  PessoaApplicationService - adicionaNovaPessoa");
         return new NovaPessoaResponse(pessoa.getIdentificador());
@@ -27,8 +30,9 @@ public class PessoaApplicationService implements PessoaService {
     @Override
     public void alteraPessoa(PessoaRequest pessoaRequest, String identificador) {
         log.info("[inicia]  PessoaApplicationService - alteraPessoa");
+        Departamento departamento = departamentoRepository.buscaDepartamentoPorIdentificador(pessoaRequest.identificadorDoDepartamento());
         Pessoa pessoa = pessoaRepository.buscaPessoaPorIdentificador(identificador);
-        pessoa.atualiza(pessoaRequest);
+        pessoa.atualiza(pessoaRequest, departamento);
         log.info("[finaliza]  PessoaApplicationService - alteraPessoa");
     }
 
